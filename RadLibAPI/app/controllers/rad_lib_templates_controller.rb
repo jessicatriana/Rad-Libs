@@ -1,0 +1,2 @@
+class RadLibTemplatesController < ApplicationController
+end
