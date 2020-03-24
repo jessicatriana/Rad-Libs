@@ -65,7 +65,7 @@ const radLibSeven ={
 const showDiv = document.getElementById('test')
 
 //test code
-createRadLibFormDiv(radLibOne)
+createRadLibFormDiv(radLibThree)
 
 //function to split text block into an array
 function splitByPipe(textBlock){
@@ -118,14 +118,16 @@ function createRadLibFormDiv(radLib){
 
     //button function on form, collects answers, combines them with content into a string, and renders div to show string
     function submitRadLibEntry(){
+        //pull title from radLib form
+        const title = document.querySelector('h1').innerText
         //stop page refresh from submit button
         event.preventDefault()
         //function collectAnswers collects answers in an array and returns array
         let describerArray = collectAnswers()
         //combine answer array and content array into one block of text and returns string
         let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
-        //set showDiv to string of completed radLib
-        showDiv.innerHTML = storyBlock
+        //set showDiv to and h1 tag of title and string of completed radLib
+        showDiv.innerHTML = `<h1>${title}</h1>` + "<br>" + storyBlock
         console.log("I can't believe it works") 
     }
 }
@@ -155,10 +157,7 @@ function combineAnswersAndContent(answerArray, contentArray){
          //add element at index to storyArray for answer and content
         storyArray += (contentArray[i] + " " + answerArray[i] + " ")
     } 
-    
-    if(storyArray.substring(storyArray.length - 10) == "undefined"){
-        console.log('undefined again')
-        storyArray.slice(0, -9)
-    }
+    console.log(contentArray)
+    console.log(answerArray)
     return storyArray
 }
