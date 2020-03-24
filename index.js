@@ -161,3 +161,5 @@ function combineAnswersAndContent(answerArray, contentArray){
     console.log(answerArray)
     return storyArray
 }
+
+

@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_205624) do
+ActiveRecord::Schema.define(version: 2020_03_24_163311) do
 
   create_table "completed_rad_libs", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.string "word_blank"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -25,8 +24,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_205624) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "word_blank"
   end
 
 end
-
-
