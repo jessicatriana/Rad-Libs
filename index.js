@@ -62,22 +62,66 @@ const radLibSeven ={
 }
 
 //div holding testform
-const showDiv = document.getElementById('test')
+const showDiv = document.getElementById('showDiv')
 
+const templateURL = "http://localhost:3000/rad_lib_templates"
+
+function fetchAllTemplates(){
+    return fetch(templateURL)
+    .then(response => response.json())
+}
+
+function renderTemplateList(allTemplates){
+    const templateUl = document.getElementById('templateUl')
+    allTemplates.forEach(template => {
+        let li = document.createElement('li')
+        li.innerText = template.name
+        li.setAttribute('id', template.id)
+        li.addEventListener("click", showTemplate)
+        templateUl.appendChild(li)
+    })
+
+}
+
+function showTemplate(e){
+    templateId = e.target.id
+    fetchSingleTemplate(templateId)
+    .then(createRadLibFormDiv)
+    // createRadLibFormDiv(templateObject)  
+}
+
+function fetchSingleTemplate(templateId) {
+    return fetch(`${templateURL}/${templateId}`)
+      .then(response => response.json())
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // createRadLibFormDiv(radLibThree)
+    fetchAllTemplates()
+    .then(renderTemplateList)
+
+})
 //test code
-createRadLibFormDiv(radLibThree)
 
+
+//**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
 //function to split text block into an array
 function splitByPipe(textBlock){
-    return textBlock.split("||")
+    console.log(textBlock)
+    const arrayOfContent = textBlock.split("||");
+    return arrayOfContent
 }
 
 //function that fills the showDiv on selection of a madlib, recieving the arguement of the madlib object
 function createRadLibFormDiv(radLib){
+    let content = radLib.content
     //clear base div display
     showDiv.innerHTML = ""
     //set array of content for reference in future functions
-    let arrayOfContent = splitByPipe(radLib.content);
+    let arrayOfContent = splitByPipe(content);
+    console.log("array of content")
+    console.log(arrayOfContent)
     //Show title of radLib and basic information on data entry in centered text
     let header = document.createElement('h1')
     header.innerText = radLib.title
