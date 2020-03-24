@@ -29,17 +29,40 @@ const madLibFour ={
     content:"Once up a time, there were three||pigs. One day, their mother said, \"You are all grown up and must||on your own.\" So they left to||their houses. The first little pig wanted only to||all day and quickly built his house out of||. The second little pig wanted to||and||all day so he||his house with||. The third||pig knew the wolf lived nearby and worked hard to||his house out of||. One day, the wolf knocked on the first pig's||. \"Let me in or I'll||your house down!\" The pig didn't, so the wolf||down the||. The wolf knocked on the second pig's||. \"Let me in or I'll blow your||down!\" The pig didn't, so the wolf||down the house. Then the wolf knocked on the third||pig's door. \"Let me in or I'll blow your house down!\" The little pig didn't so the wolf||,and||. He could not blow the house down. All the pigs went to live in the||house and they all||happily ever after.",
     
     blanks: "adjective||verb||verb||verb||plural noun||verb||verb||past tense verb||plural noun||adjective||verb||plural noun||noun||verb||past tense verb||noun||noun||noun||past tense verb||adjective||past tense verb||past tense verb||noun||past tense verb"
-    }
+    };
+const madLibFive ={
+    title: "Fitness Tips", 
+
+    content: "Looking for a no-nonsense workout for those days when you're too||to get to the gym? We've got you covered. First, warm up with|| minutes of cardio.  Burpees, ||climbers, or||jacks will get your||pumping. Then, move on to one of these targeted workouts: ARMS: Whether you want to get jacked like||or simply look||in sleeveless dresses this summer, ||training is key. For cut arms, try a superset of push-ups and dips. To complete a push-up, start in a locked-out position and lower your||to the floor.  Either way, you're going to feel the burn! LEGS: Muscular thighs and ||-size butts are totally in right now! For||results, add squats and lunges into your daily routine. When squatting, make sure your||gets below your knees for the full range of motion. To amp up your workout, add some weight to both movements. Hold a pair of||or grab the family||. Then squat and lunge your little||off! ABS: Abs...the unicorn of the fitness world. The||truth is, you can do all the crunches, ||-ups, and||-raises you want...but abs are ultimately made in (the)||. So put away that double order of||and reach for a nice||salad instead! Your||will thank you, even if your taste buds won't!",
+    
+    blanks: "adjective||number||noun||verb ending in 'ing'||body part||celebrity||adjective||noun||body part||plural noun||type of food||adjective||body part||plural noun||animal||body part||adjective||verb||a place||type of food||color||body part"
+    
+};
+
+const madLibSix ={
+    title: "We Are Looking For The Right Candidate",
+
+    content: "The right candidate will be able to develop information systems by||, developing, and||software solutions.  They will be able to develop software||by||information needs, conferring with ||, and studying systems||, data usage, and||processes. This person should be able to demonstrate solutions by developing||, flowcharts, layouts, code comments and||code.  The candidate should|| operations by keeping information||.  Our company is looking for the following qualifications and skills: Analyzing||, ||programming skills, problem solving, and teamwork.  The ideal education and experience would include: ||+ years of||software development experience, proficiency in||or||, and object-oriented||skills.",
+
+    blanks: "verb ending in 'ing'||verb ending in 'ing'||plural noun||verb ending in 'ing'||plural noun||noun||noun||plural noun||adjective||verb||adverb||plural noun||adjective||number||adjective||programming language||hobby||adjective"
+
+}
+
+const madLibSeven ={
+    title: "My Last Job",
+
+    content: "I was just fired from my||job. I didn't really like it anyways because my boss was a||. Luckily,  I had a||idea. I always wanted to own my own business because I am good at||. The problem I solved for customers was helping them||their||. I decided to||a business plan. I asked my best friend, ||to help. Since I was broke, I asked my|| || for the money to start the business. They agreed. The ||business was a huge success from the start. We hired as many|| employees as we could. The biggest problem was that the ||kept ||the||. Fortunately, it was only temporary. After a few years, a very large ||came along and wanted to buy the company. I sold it for ||dollars and a few ||. Now I spend all my time ||.",
+
+    blanks: "adjective||noun||adjective||verb||verb||noun||verb||person's name||adjective||noun||adjective||adjective||noun||verb||noun||noun||number||plural noun||verb ending in 'ing'"
+
+}
+
 
 //div holding testform
 const showDiv = document.getElementById('test')
 
 //test code
-createMadLibFormDiv(madLibThree)
-
-//splitting the content into an array
-// var arrayOfContent = [];
-let arrayOfContent = splitByPipe(madLibThree.content);
+createMadLibFormDiv(madLibSeven)
 
 //function to split text block into an array
 function splitByPipe(textBlock){
@@ -73,7 +96,7 @@ function createMadLibFormDiv(madLib){
         const label = document.createElement('label')
         const input = document.createElement('input')
         input.setAttribute('id', (i + 1))
-        label.innerText = arrayOfBlanks[i]
+        label.innerText = arrayOfBlanks[i] + ":"
         form.appendChild(label)
         form.appendChild(input)
         form.innerHTML += "<br>";
@@ -90,20 +113,20 @@ function createMadLibFormDiv(madLib){
     //attach button to form
     form.appendChild(submit)
 
+    //button function on form, collects answers, combines them with content into a string, and renders div to show string
+    function submitMadLibEntry(){
+        //stop page refresh from submit button
+        event.preventDefault()
+        //function collectAnswers collects answers in an array and returns array
+        let describerArray = collectAnswers()
+        //combine answer array and content array into one block of text and returns string
+        let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
+        //set showDiv to string of completed madLib
+        showDiv.innerHTML = storyBlock
+        console.log("I can't believe it works") 
+    }
 }
 
-//button function on form, collects answers, combines them with content into a string, and renders div to show string
-function submitMadLibEntry(){
-    //stop page refresh from submit button
-    event.preventDefault()
-    //function collectAnswers collects answers in an array and returns array
-    let describerArray = collectAnswers()
-    //combine answer array and content array into one block of text and returns string
-    let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
-    //set showDiv to string of completed madLib
-    showDiv.innerHTML = storyBlock
-    console.log("I can't believe it works") 
-}
 
 //collects data from inputs and returns an array of values
 function collectAnswers(){
