@@ -46,12 +46,3 @@ RadLibTemplate.create(
          content: "I was just fired from my||job. I didn't really like it anyways because my boss was a||. Luckily,  I had a||idea. I always wanted to own my own business because I am good at||. The problem I solved for customers was helping them||their||. I decided to||a business plan. I asked my best friend, ||to help. Since I was broke, I asked my|| || for the money to start the business. They agreed. The ||business was a huge success from the start. We hired as many|| employees as we could. The biggest problem was that the ||kept ||the||. Fortunately, it was only temporary. After a few years, a very large ||came along and wanted to buy the company. I sold it for ||dollars and a few ||. Now I spend all my time ||.",
          word_blank: "adjective||noun||adjective||verb||verb||noun||verb||person's name||adjective||noun||adjective||adjective||noun||verb||noun||noun||number||plural noun||verb ending in 'ing'"
        )       
-
-# lib1 = CompletedRadLib.create(name: "ABC")
-# lib2 = CompletedRadLib.create(name: "Dogs")
-
-    
-
-
-
-
