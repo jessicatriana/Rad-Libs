@@ -124,7 +124,7 @@ function createRadLibFormDiv(radLib){
     console.log(arrayOfContent)
     //Show title of radLib and basic information on data entry in centered text
     let header = document.createElement('h1')
-    header.innerText = radLib.title
+    header.innerText = radLib.name
     header.style.textAlign = "center"
     showDiv.appendChild(header)
     let instructions = document.createElement('h4')
@@ -137,7 +137,7 @@ function createRadLibFormDiv(radLib){
     //add form to div
     showDiv.appendChild(form)
     //break blanks string into array by entry
-    let arrayOfBlanks = splitByPipe(radLib.blanks)
+    let arrayOfBlanks = splitByPipe(radLib.word_blank)
     //for each blank in the array, create labels and input fields. index value is used as an id for input form
     for (i = 0; i < arrayOfBlanks.length; i++) {
         const label = document.createElement('label')
