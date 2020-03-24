@@ -62,22 +62,66 @@ const radLibSeven ={
 }
 
 //div holding testform
-const showDiv = document.getElementById('test')
+const showDiv = document.getElementById('showDiv')
 
+const templateURL = "http://localhost:3000/rad_lib_templates"
+
+function fetchAllTemplates(){
+    return fetch(templateURL)
+    .then(response => response.json())
+}
+
+function renderTemplateList(allTemplates){
+    const templateUl = document.getElementById('templateUl')
+    allTemplates.forEach(template => {
+        let li = document.createElement('li')
+        li.innerText = template.name
+        li.setAttribute('id', template.id)
+        li.addEventListener("click", showTemplate)
+        templateUl.appendChild(li)
+    })
+
+}
+
+function showTemplate(e){
+    templateId = e.target.id
+    fetchSingleTemplate(templateId)
+    .then(createRadLibFormDiv)
+    // createRadLibFormDiv(templateObject)  
+}
+
+function fetchSingleTemplate(templateId) {
+    return fetch(`${templateURL}/${templateId}`)
+      .then(response => response.json())
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // createRadLibFormDiv(radLibThree)
+    fetchAllTemplates()
+    .then(renderTemplateList)
+
+})
 //test code
-createRadLibFormDiv(radLibOne)
 
+
+//**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
 //function to split text block into an array
 function splitByPipe(textBlock){
-    return textBlock.split("||")
+    console.log(textBlock)
+    const arrayOfContent = textBlock.split("||");
+    return arrayOfContent
 }
 
 //function that fills the showDiv on selection of a madlib, recieving the arguement of the madlib object
 function createRadLibFormDiv(radLib){
+    let content = radLib.content
     //clear base div display
     showDiv.innerHTML = ""
     //set array of content for reference in future functions
-    let arrayOfContent = splitByPipe(radLib.content);
+    let arrayOfContent = splitByPipe(content);
+    console.log("array of content")
+    console.log(arrayOfContent)
     //Show title of radLib and basic information on data entry in centered text
     let header = document.createElement('h1')
     header.innerText = radLib.title
@@ -85,7 +129,7 @@ function createRadLibFormDiv(radLib){
     showDiv.appendChild(header)
     let instructions = document.createElement('h4')
     instructions.style.textAlign = "center"
-    instructions.innerHTML = "Fill in an entry for each part of speech!<br>Remember:<br>A noun is a person, place or thing (ostrich, broken shoelace, the Louvre).<br>A verb is an action (cry, juggle, yodel).<br>An adjective describes a noun (fluffy, poisonous, irritating).<br>An adverb modifies or describes a verb or adjective (gently, creepily, joyously)."
+    // instructions.innerHTML = "Fill in an entry for each part of speech!<br><br>Remember:<br>A noun is a person, place or thing (ostrich, broken shoelace, the Louvre).<br>A verb is an action (cry, juggle, yodel).<br>An adjective describes a noun (fluffy, poisonous, irritating).<br>An adverb modifies or describes a verb or adjective (gently, creepily, joyously)."
     showDiv.appendChild(instructions)
     //create a form and centered text
     const form = document.createElement('form')
@@ -118,14 +162,16 @@ function createRadLibFormDiv(radLib){
 
     //button function on form, collects answers, combines them with content into a string, and renders div to show string
     function submitRadLibEntry(){
+        //pull title from radLib form
+        const title = document.querySelector('h1').innerText
         //stop page refresh from submit button
         event.preventDefault()
         //function collectAnswers collects answers in an array and returns array
         let describerArray = collectAnswers()
         //combine answer array and content array into one block of text and returns string
         let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
-        //set showDiv to string of completed radLib
-        showDiv.innerHTML = storyBlock
+        //set showDiv to and h1 tag of title and string of completed radLib
+        showDiv.innerHTML = `<h1>${name}</h1>` + "<br>" + storyBlock
         console.log("I can't believe it works") 
     }
 }
@@ -155,11 +201,8 @@ function combineAnswersAndContent(answerArray, contentArray){
          //add element at index to storyArray for answer and content
         storyArray += (contentArray[i] + " " + answerArray[i] + " ")
     } 
-    
-    if(storyArray.substring(storyArray.length - 10) == "undefined"){
-        console.log('undefined again')
-        storyArray.slice(0, -9)
-    }
+    console.log(contentArray)
+    console.log(answerArray)
     return storyArray
 }
 
