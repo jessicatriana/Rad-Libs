@@ -129,7 +129,7 @@ function createRadLibFormDiv(radLib){
     showDiv.appendChild(header)
     let instructions = document.createElement('h4')
     instructions.style.textAlign = "center"
-    instructions.innerHTML = "Fill in an entry for each part of speech!<br>Remember:<br>A noun is a person, place or thing (ostrich, broken shoelace, the Louvre).<br>A verb is an action (cry, juggle, yodel).<br>An adjective describes a noun (fluffy, poisonous, irritating).<br>An adverb modifies or describes a verb or adjective (gently, creepily, joyously)."
+    // instructions.innerHTML = "Fill in an entry for each part of speech!<br><br>Remember:<br>A noun is a person, place or thing (ostrich, broken shoelace, the Louvre).<br>A verb is an action (cry, juggle, yodel).<br>An adjective describes a noun (fluffy, poisonous, irritating).<br>An adverb modifies or describes a verb or adjective (gently, creepily, joyously)."
     showDiv.appendChild(instructions)
     //create a form and centered text
     const form = document.createElement('form')
@@ -171,7 +171,7 @@ function createRadLibFormDiv(radLib){
         //combine answer array and content array into one block of text and returns string
         let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
         //set showDiv to and h1 tag of title and string of completed radLib
-        showDiv.innerHTML = `<h1>${title}</h1>` + "<br>" + storyBlock
+        showDiv.innerHTML = `<h1>${name}</h1>` + "<br>" + storyBlock
         console.log("I can't believe it works") 
     }
 }
