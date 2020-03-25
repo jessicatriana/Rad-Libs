@@ -89,27 +89,51 @@ function createRadLibFormDiv(radLib){
     const submit = document.createElement('button')
     submit.innerHTML = "Submit"
     //event listener to form processessing function, rendering completed radLib in showDiv
-    submit.addEventListener("click", submitRadLibEntry)
+    submit.addEventListener("click", () => {
+        submitRadLibEntry();
+    })
     
     form.appendChild(submit)
-
     //button function on form, collects answers, combines them with content into a string, and renders div to show string
     function submitRadLibEntry(){
         event.preventDefault()
-        //stop page refresh from submit button
         //function collectAnswers collects answers in an array and returns array
         let describerArray = collectAnswers()
         //combine answer array and content array into one block of text and returns string
         let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
         //set showDiv to and h1 tag of title and string of completed radLib
         showDiv.innerHTML = `<h1>${header.innerText}</h1>` + "<br>" + storyBlock
+        
+        const newDiv = document.createElement('div');
+        showDiv.appendChild(newDiv);
+        const saveBtn = document.createElement('button');
+        saveBtn.innerText = "Save Your Rad Lib";
+        saveBtn.addEventListener('click', postCompletedRadLib)
+        newDiv.appendChild(saveBtn);
     }
 }
+
+function postCompletedRadLib(event) {
+  data = {
+      name: event.target.parentNode.previousElementSibling.previousElementSibling.innerText, 
+      content: event.target.parentElement.previousSibling.data 
+    }
+  
+  fetch('http://localhost:3000/completed_rad_libs', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"    
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(result => console.log(result))
+};
 
 
 //collects data from inputs and returns an array of values
 function collectAnswers(){
-    //set up empty array
     let inputArray = [];
     //set upper limit of for loop to total number of input fields
     const inputTotal = document.querySelector('form').dataset.entryCount
@@ -118,17 +142,14 @@ function collectAnswers(){
         let input = document.getElementById(`input ${i}`).value
         inputArray.push(input)
     }
-    //console.log(inputArray)
     return inputArray
-
 }
 
 //combines and returns the array of answer and the array of content in a string
 function combineAnswersAndContent(answerArray, contentArray){
     //set empty array
     let storyArray = [];
-    console.log(answerArray)
-    console.log(contentArray)
+  
     for (let i = 0; i < contentArray.length; i++){         
          //add element at index to storyArray for answer and content
          if (i >= answerArray.length){
@@ -138,8 +159,6 @@ function combineAnswersAndContent(answerArray, contentArray){
         storyArray += (contentArray[i] + " " + answerArray[i] + " ")
         }
     } 
-    //console.log(contentArray)
-    //console.log(answerArray)
     return storyArray
 }
 

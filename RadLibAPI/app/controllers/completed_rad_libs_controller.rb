@@ -12,12 +12,11 @@ class CompletedRadLibsController < ApplicationController
   end
 
   def create 
-    completed = CompletedRadLib.new(
+    CompletedRadLib.create(
       name: params[:name],
       content: params[:content]  
     ) 
-    completed.save
-    
+
     render json: completed
   end
 
