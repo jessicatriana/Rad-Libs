@@ -13,11 +13,7 @@ class RadLibTemplatesController < ApplicationController
   def create
     rad_lib = RadLibTemplate.new(rad_lib_template_params(:name, :content, :word_blank))
     rad_lib.save
-    # RadLibTemplate.create(
-    #   name: "need to pull this from the params"
-    #   content: "need to pull this from the params"
-    #   word_blank: "need to pull this from the params"    
-    # )
+   
     render json: rad_lib
   end
 
