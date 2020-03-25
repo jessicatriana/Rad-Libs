@@ -11,17 +11,18 @@ class CompletedRadLibsController < ApplicationController
     render json: rad_lib, only: [:name, :content]
   end
 
-  def create 
-    CompletedRadLib.create(
-      name: params[:name],
-      content: params[:content]  
+  def create
+    complete_lib = CompletedRadLib.create!(
+      name: params[:completed_rad_lib][:name],
+      content: params[:completed_rad_lib][:content],
+      rad_lib_template_id: params[:template_id] 
     ) 
-
-    render json: completed
+  
+    render json: complete_lib
   end
 
   def destroy 
-    rad_lib = RadLibTemplate.find_by(id: params[:id])
+    rad_lib = CompletedRadLib.find_by(id: params[:id])
     rad_lib.destroy
 
     render json: rad_lib

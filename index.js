@@ -106,7 +106,9 @@ function createRadLibFormDiv(radLib){
         
         const newDiv = document.createElement('div');
         showDiv.appendChild(newDiv);
+    
         const saveBtn = document.createElement('button');
+        saveBtn.id = radLib.id;
         saveBtn.innerText = "Save Your Rad Lib";
         saveBtn.addEventListener('click', postCompletedRadLib)
         newDiv.appendChild(saveBtn);
@@ -116,7 +118,8 @@ function createRadLibFormDiv(radLib){
 function postCompletedRadLib(event) {
   data = {
       name: event.target.parentNode.previousElementSibling.previousElementSibling.innerText, 
-      content: event.target.parentElement.previousSibling.data 
+      content: event.target.parentElement.previousSibling.data, 
+      template_id: event.target.id
     }
   
   fetch('http://localhost:3000/completed_rad_libs', {
@@ -130,7 +133,6 @@ function postCompletedRadLib(event) {
     .then(response => response.json())
     .then(result => console.log(result))
 };
-
 
 //collects data from inputs and returns an array of values
 function collectAnswers(){

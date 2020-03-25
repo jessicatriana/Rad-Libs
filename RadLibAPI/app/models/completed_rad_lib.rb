@@ -1,3 +1,3 @@
 class CompletedRadLib < ApplicationRecord
-    belongs_to :radLibTemplate
+    belongs_to :rad_lib_template
 end

@@ -1,4 +1,4 @@
 class RadLibTemplate < ApplicationRecord
   
-    has_many :completedRadLibs
+    has_many :completed_rad_libs
 end
