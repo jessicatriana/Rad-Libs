@@ -127,9 +127,16 @@ function collectAnswers(){
 function combineAnswersAndContent(answerArray, contentArray){
     //set empty array
     let storyArray = [];
+    console.log(answerArray)
+    console.log(contentArray)
     for (let i = 0; i < contentArray.length; i++){         
          //add element at index to storyArray for answer and content
+         if (i >= answerArray.length){
+             storyArray += contentArray[i]
+            }
+        else {
         storyArray += (contentArray[i] + " " + answerArray[i] + " ")
+        }
     } 
     //console.log(contentArray)
     //console.log(answerArray)
