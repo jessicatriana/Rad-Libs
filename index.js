@@ -110,7 +110,7 @@ function createRadLibFormDiv(radLib){
         //set showDiv to and h1 tag of title and string of completed radLib
         showDiv.innerHTML = ''
 
-        showDiv.innerHTML = `<h1>${header.innerText}</h1>` + "<br>" + storyBlock
+        // showDiv.innerHTML = `<h1>${radLib.name}</h1>` + "<br>" + storyBlock
         
         const newDiv = document.createElement('div');
         showDiv.appendChild(newDiv);
@@ -119,11 +119,11 @@ function createRadLibFormDiv(radLib){
         saveBtn.id = radLib.id;
         saveBtn.innerText = "Save Your Rad Lib";
         saveBtn.addEventListener('click', postCompletedRadLib)
-        newDiv.appendChild(saveBtn);
-
-   showDiv.innerHTML = ''
+        
+        // showDiv.innerHTML = `<h1>${header.innerText}</h1>` + "<br>" + storyBlock
+        //     showDiv.innerHTML = ''
         let header = document.createElement('h1')
-
+        
         header.setAttribute('data-id', radLib.id);
     
         header.innerText = radLib.name
@@ -133,6 +133,7 @@ function createRadLibFormDiv(radLib){
    
         showDiv.appendChild(header)
         showDiv.innerHTML += storyBlock
+        showDiv.appendChild(saveBtn);
         // showDiv.innerHTML = header + "<br>" + storyBlock
 
 
