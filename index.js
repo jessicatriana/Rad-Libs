@@ -108,7 +108,7 @@ function createRadLibFormDiv(radLib){
         //combine answer array and content array into one block of text and returns string
         let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
         //set showDiv to and h1 tag of title and string of completed radLib
-   showDiv.innerHTML = ''
+        showDiv.innerHTML = ''
         let header = document.createElement('h1')
 
         header.setAttribute('data-id', radLib.id);
@@ -121,7 +121,39 @@ function createRadLibFormDiv(radLib){
         showDiv.appendChild(header)
         showDiv.innerHTML += storyBlock
         // showDiv.innerHTML = header + "<br>" + storyBlock
+
+
+        // RATING CODE THAT SHOULD BE BROKEN INTO FUNCTIONS
+        const rateForm = document.createElement("form")
+        const formLabel = document.createElement('label')
+        const formInput = document.createElement('input')
+
+        rateForm.style.textAlign = "left"
+        showDiv.appendChild(rateForm)
+        rateForm.setAttribute('data-id', radLib.id);
+    
+        formLabel.innerHTML = "<br><strong>Rate this Rad Lib (1-5)</strong><br>"
+        rateForm.appendChild(formLabel)
+        rateForm.appendChild(formInput)
+        rateForm.innerHTML += "<br>";
+
+        const submitBtn = document.createElement('button')
+        submitBtn.innerHTML = "Submit Rating"
+        submitBtn.style.borderRadius = "10px"
+        submitBtn.style.color = "#FFFFFF"
+        submitBtn.style.backgroundColor = "#3298dc" 
+        rateForm.appendChild(submitBtn)
+
+      
+       
+        submitBtn.addEventListener("click", () => {
+            event.preventDefault()
+            let ratingNum = event.target.value
+            console.log(ratingNum)
+            
+        })    
     }
+        // END OF RATING CODE THAT SHOULD BE BROKEN INTO FUNCTIONS
 }
 
 
@@ -158,5 +190,4 @@ function combineAnswersAndContent(answerArray, contentArray){
     //console.log(answerArray)
     return storyArray
 }
-
 
