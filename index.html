@@ -7,10 +7,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     </head>
-    <body>
-        <nav class="navbar is-info" role="navigation" aria-label="main navigation" >
+    <body class="has-navbar-fixed-top">
+        <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation" >
             <div class="navbar-brand">
-              <a class="navbar-item" href="https://bulma.io">
+              <a class="navbar-item is-link" href="https://bulma.io" >
                 &#9734 <img src="RadLibAPI/app/assets/images/RadLibs_logo.png" width="112" height="28">
               </a>
               <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -19,8 +19,8 @@
                 <span aria-hidden="true"></span>
               </a>
             </div>
-            <div id="navbarBasicExample" class="navbar-menu">
-              <div class="navbar-start">
+            <!-- <div id="navbarBasicExample" class="navbar-menu"> -->
+              <!-- <div class="navbar-start">
                 <a class="navbar-item">
                   Home
                 </a>
@@ -46,64 +46,88 @@
                       Report an issue
                     </a>
                   </div>
-                </div>
-            <!-- </div>
+                </div> -->
+            <!-- </div> -->
+              
+                  <!-- </div> -->
               <div class="navbar-end">
                 <div class="navbar-item">
-                  <div class="buttons">
+
+
+                  <a HREF="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black'">
+                    Home
+                  </a>
+                  <!-- <a class="navbar-item">
+                    "Link to Something"
+                  </a> -->
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                      Browse Completed Rad Libs
+                    </a>
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item">
+                        About
+                      </a>
+                      <a class="navbar-item">
+                        Jobs
+                      </a>
+                      <a class="navbar-item">
+                        Contact
+                      </a>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item">
+                        Report an issue
+                      </a>
+
+                  <!-- <div class="buttons">
                     <a class="button is-primary">
                       <strong>Sign up</strong>
                     </a>
                     <a class="button is-light">
                       Log in
                     </a>
-                  </div>
-                </div>
-              </div> -->
+                  </div> -->
+                <!-- </div> -->
+              </div>
             </div>
           </nav>
         <section class="section" style="width: 400px; float:left; ">
             <aside class="menu" style="background-color: #3298dc; border-radius: 10px">
                 <div style="padding: 15px">
-                <p class="menu-label" style="color: white">
-                     Rad Libs offer a creative spin on storytelling. Select a Rad Lib and enjoy!  
+                  <h1 style="color: rgb(48, 47, 53); font-weight:normal; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                     Rad Libs offer a creative spin on storytelling!
                     <br><br>
-                    Fill in an entry for each part of speech.
-                    <br><br>
-                    <!-- Fill in an entry for each part of speech! -->
-                    <!-- <br><br>
-                    Remember:
-                    <br><br>
-                    A noun is a person, place or thing (ostrich, broken shoelace, the Louvre).
-                    <br>
-                    A verb is an action (cry, juggle, yodel).
-                    <br>
-                    An adjective describes a noun (fluffy, poisonous, irritating).
-                    <br>
-                    An adverb modifies or describes a verb or adjective (gently, creepily, joyously).
-                </p> -->
-                <h1 style="color: white">Parts of Speech:</h1>
+                  </h1>
+                    <h1 style="color: white; font-family:'Courier New', Courier, monospace; font-weight:bolder; font-size: large">Select a Rad Lib:</h1>
+                <br>
+                <ul id="templateUl" class="menu-list" style="color: #FFFFFF">
+                </ul> 
+                <br><br>
+                
+                <h1 style="color: white; font-family:'Courier New', Courier, monospace; font-weight:bolder; font-size: large">Parts of Speech:</h1>
                 <ul class="menu-list" >
-                  <li><a>Noun: a person, place, or thing</a></li>
-                  <li><a>Verb: an action word</a></li>
-                  <li><a>Adjective: a describing word</a></li>
-                  <li><a>Adverb: a describing word that ends in "ly"</a></li>
+                  <li><a style="color: white" onmouseover="this.style.color= 'black' ">Noun: a person, place, or thing</a></li>
+                  <li><a style="color: white" onmouseover="this.style.color= 'black' ">Verb: an action word</a></li>
+                  <li><a style="color: white" onmouseover="this.style.color= 'black' ">Adjective: a describing word</a></li>
+                  <li><a style="color: white" onmouseover="this.style.color= 'black' ">Adverb: a describing word that ends in "ly"</a></li>
                 </ul>
                 <br>
-                <h1 style="color: white">Rad Lib Templates:</h1>
-                <br>
-                <ul id="templateUl" class="menu-list" style="color: rgb(71, 70, 70)">
-                </ul> 
-            </div>
-              </aside>
-            </section>
-              <div id="showDiv" class="column is-two-thirds" style="float:right; padding: 15px">
+                
+              </div>
+            </aside>
+        </section>
+
+       
+
+              <div id="showDiv" class="column is-two-thirds" style="float:right; padding: 15px; border-style: solid; border-radius: 10px; margin: 50px">
               <p class="subtitle">
-                <br><br>
-                <center>&#9734 <img src="RadLibAPI/app/assets/images/RadLibs_logo.png" width="412" height="328"></center>
+                
+                <center><img src="RadLibAPI/app/assets/images/logo2.png" width="412" height="328"></center>
                 <!-- <center><img src="RadLibAPI/app/assets/images/rad_mad_libs.jpg" width="400" height="316"></center> -->
+             
+            
                 <br>
-                <center><h1>A familiar word game.</h1></center>
+                
               </p>
               </div>
       <script src="index.js"></script>     
