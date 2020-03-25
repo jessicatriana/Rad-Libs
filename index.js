@@ -59,6 +59,9 @@ function createRadLibFormDiv(radLib){
 
     header.innerText = radLib.name
     header.style.textAlign = "center"
+    header.style.fontSize = "50px"
+    header.style.fontFamily = "marker felt"
+
     showDiv.appendChild(header)
     let instructions = document.createElement('h4')
     instructions.style.textAlign = "center"
@@ -88,6 +91,9 @@ function createRadLibFormDiv(radLib){
     //create submit button and label it
     const submit = document.createElement('button')
     submit.innerHTML = "Submit"
+    submit.style.borderRadius = "10px"
+    submit.style.color = "#FFFFFF"
+    submit.style.backgroundColor = "#3298dc"
     //event listener to form processessing function, rendering completed radLib in showDiv
     submit.addEventListener("click", () => {
         submitRadLibEntry();
@@ -102,6 +108,7 @@ function createRadLibFormDiv(radLib){
         //combine answer array and content array into one block of text and returns string
         let storyBlock = combineAnswersAndContent(describerArray, arrayOfContent)
         //set showDiv to and h1 tag of title and string of completed radLib
+
         showDiv.innerHTML = `<h1>${header.innerText}</h1>` + "<br>" + storyBlock
         
         const newDiv = document.createElement('div');
@@ -112,6 +119,20 @@ function createRadLibFormDiv(radLib){
         saveBtn.innerText = "Save Your Rad Lib";
         saveBtn.addEventListener('click', postCompletedRadLib)
         newDiv.appendChild(saveBtn);
+
+   showDiv.innerHTML = ''
+        let header = document.createElement('h1')
+
+        header.setAttribute('data-id', radLib.id);
+    
+        header.innerText = radLib.name
+        header.style.textAlign = "center"
+        header.style.fontSize = "50px"
+        header.style.fontFamily = "marker felt"
+   
+        showDiv.appendChild(header)
+        showDiv.innerHTML += storyBlock
+
     }
 }
 
@@ -151,14 +172,14 @@ function collectAnswers(){
 function combineAnswersAndContent(answerArray, contentArray){
     //set empty array
     let storyArray = [];
-  
+
     for (let i = 0; i < contentArray.length; i++){         
-         //add element at index to storyArray for answer and content
+         //add element at index to storyArray for answer and content. If answer array is shorter than content array, only push content
          if (i >= answerArray.length){
              storyArray += contentArray[i]
             }
         else {
-        storyArray += (contentArray[i] + " " + answerArray[i] + " ")
+        storyArray += (contentArray[i] + " " +`<strong>${answerArray[i]}</strong>`  + " ")
         }
     } 
     return storyArray
