@@ -56,13 +56,13 @@
 
               <div class="navbar-end">
                 <div class="navbar-item">
-
-                  <a id="template-create" href="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black' ">
-                    Create a Template
-                  </a>
                   <a href="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black' ">
                     Home
                   </a>
+                  <a id="template-create" href="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black' ">
+                    Create a Template
+                  </a>
+                 
                   <!-- <a class="navbar-item">
                     "Link to Something"
                   </a> -->
@@ -74,19 +74,7 @@
                       <a class="navbar-item">
                         About
                       </a>
-                      <!-- completedRadLibs.all.forEach(radlib=>create and append aclass to navbar with id tag
-                      aclass.addeventlistener(onclick => show radlib[id])) -->
-
-                  <!-- <div class="buttons">
-                    <a class="button is-primary">
-                      <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                      Log in
-                    </a>
-
-                  </div> -->
-                <!-- </div> -->
+                
               </div>
 
 
@@ -96,13 +84,13 @@
             <aside class="menu" style="background-color: #3298dc; border-radius: 10px">
                 <div style="padding: 15px">
 
-                  <h1 style="color: rgb(48, 47, 53); font-weight:normal; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  <h1 style="color: rgb(48, 47, 53); font-weight:normal; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; cursor: pointer;">
                      Rad Libs offer a creative spin on storytelling!
                     <br><br>
                   </h1>
                     <h1 style="color: white; font-family:'Courier New', Courier, monospace; font-weight:bolder; font-size: large">Select a Rad Lib:</h1>
                 <br>
-                <ul id="templateUl" class="menu-list" style="color: #FFFFFF">
+                <ul id="templateUl" class="menu-list" style="color: #FFFFFF; cursor: pointer">
                 </ul> 
                 <br><br>
                 
@@ -130,6 +118,14 @@
                 <br>
               </div> 
 
+
+              <footer style="position: fixed; bottom: 0; text-align: center; width: 100%">
+                <div style= padding:10px;>
+                  <p>
+                    <center><strong>Rad Libs</strong> by Maylene, Dane, and Jessica of the Dev Tones cohort at Flatiron School.</center>
+                  </p>
+                </div>
+              </footer>
 
               <script src="index.js"></script>     
               <script src="createTemplate.js"></script> 

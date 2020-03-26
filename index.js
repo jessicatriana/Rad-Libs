@@ -54,7 +54,7 @@ function renderCompletedLibs(json){
         // console.log(radLib)
         let radLibLink = document.createElement('a')
         radLibLink.class = 'navbar-item'
-        radLibLink.innerHTML = `${radLib.name} <br>`
+        radLibLink.innerHTML = `${radLib.name}, (${rating}) <br>`
         radLibLink.setAttribute("id", radLib.id)
         radLibLink.addEventListener("click", showCompletedLib)
         navBar.appendChild(radLibLink)
@@ -103,6 +103,7 @@ function deleteCompletedRadLib(e){
           "Accept": "application/json"
         }   
     })
+
     .then(showAfterDeletedLib)
     .then(fetchAllCompletedLibs)
     .then(renderCompletedLibs)
@@ -111,6 +112,8 @@ function deleteCompletedRadLib(e){
 function showAfterDeletedLib() {
   showDiv.innerHTML = '';
   showDiv.innerHTML = `<center><img src="https://www.govloop.com/wp-content/uploads/2015/07/minions.png"></center>`
+    alert("Rad Lib Deleted!")
+
 }
 //**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
 //function to split text block into an array
@@ -237,8 +240,6 @@ function createRadLibFormDiv(radLib){
         submitBtn.style.color = "#FFFFFF"
         submitBtn.style.backgroundColor = "#3298dc" 
         rateForm.appendChild(submitBtn)
-
-      
        
         submitBtn.addEventListener("click", event => {
             event.preventDefault()
@@ -252,13 +253,14 @@ function createRadLibFormDiv(radLib){
 
         }
 
-    }
+        }
         // END OF RATING CODE THAT SHOULD BE BROKEN INTO FUNCTIONS
 }
 
 function postCompletedRadLib(event) {
   //if we need to move the button (titleToPost variable has the name: data)  
   //let titleToPost = document.getElementsByTagName('h1')[3].innerText;
+  alert("Rad Lib Saved!")
   data = {
       name: event.target.parentElement.firstElementChild.nextElementSibling.innerText, 
       content: contentToPost, 

@@ -11,7 +11,7 @@ function fillDiv(){
 function createAndAttachForm(){
     //create and fill header with intro to form creation
     let header = document.createElement('h1')
-    header.innerText = "Create your own new Rad Lib template!"
+    header.innerText = "Create your own Rad Lib template!"
     header.style.textAlign = "center"
     header.style.fontSize = "50px"
     header.style.fontFamily = "marker felt"
@@ -19,9 +19,9 @@ function createAndAttachForm(){
     //create and fill description box on how to use form
 
     let intro = document.createElement('p')
-    intro.innerText = "Type or copy the paragraph(s) you would like to make into a template, then surround the each individual word you would like to make into a variable with || (commonly called double pipes) on either side! \nExample: \"Today I learned how to ||ride|| a ||horse||. It was ||exhausting||!\". \nIt is important you *only* surround the letters and not punctuation. \n Our amazing, top of the line AI will deduce what part of speech your word is and create a template based on your entry."
-    intro.style.textAlign = "center"
-    intro.style.fontFamily = "marker felt"
+    intro.innerHTML= "1. Type or copy the paragraph(s) you would like to make into a template. <br> 2. To turn a word into a variable, surround it with || <em>(commonly called double pipes).</em><br><br><em>Example:</em>  Today I learned how to ||<strong>ride</strong>|| a ||<strong>horse</strong>||. It was ||<strong>exhausting</strong>||!<br><br>It is important that you *only* surround the letters and not the punctuation. \n Our amazing, top of the line AI will deduce which part of speech your word is, then create a template based on your entry."
+    // intro.style.textAlign = "center"
+    // intro.style.fontFamily = "marker felt"
 
     //create aspects of form to prep for post with submit
     let form = document.createElement('form')
@@ -37,7 +37,7 @@ function createAndAttachForm(){
     form.appendChild(titleInputLabel)
     form.innerHTML += "<br>"
     form.appendChild(titleInput)
-    form.innerHTML += "<br>"
+    form.innerHTML += "<br><br>"
     contentInputLabel.innerText = "Your story with double pipes!"
     contentInputLabel.setAttribute("for", "text-box")
     contentInputLabel.style["display"] = "block";
@@ -46,7 +46,15 @@ function createAndAttachForm(){
     contentInput.setAttribute('cols', 100)
     contentInput.setAttribute('rows', 5)
     contentInput.style["display"] = "block";
+<<<<<<< HEAD
     submitButton.innerText = "SAVE"
+    submitButton.style = 'border-radius: 10px; color: rgb(255, 255, 255); background-color: rgb(50, 152, 220);'
+=======
+    submitButton.innerText = "Save"
+    submitButton.style.borderRadius = "10px"
+    submitButton.style.color = "#FFFFFF"
+    submitButton.style.backgroundColor = "#3298dc" 
+>>>>>>> 09350061276bce0eb4938685385f6e2fab145f3d
     submitButton.setAttribute('id','submit')
     submitButton.addEventListener("click", postTemplate)
     form.appendChild(contentInputLabel)
@@ -62,11 +70,9 @@ function createAndAttachForm(){
         titleInputValue = document.getElementById('name').value
         
         turnContentToPostData(contentInputValue)
-
-        console.log("this is at the end of the postTemplate function"
-        )
-        console.log(titleInputValue)
-        console.log(contentInputValue)
+        
+        showDiv.innerHTML = ''
+        console.log("this is at the end of the postTemplate function")
     }
 
     //append all elements into showDiv
@@ -81,7 +87,7 @@ function turnContentToPostData(inputContent){
     let fullContentArray = splitByPipe(inputContent)
     let content = []
     let blanks = []
-    for( i = 0; i<fullContentArray.length; i++){
+    for( let i = 0; i<fullContentArray.length; i++){
         if (i % 2 == 0){
             content.push(fullContentArray[i])
         }
@@ -90,8 +96,12 @@ function turnContentToPostData(inputContent){
         }
     }
 
-    let posObjectArray = turnToPOS(blanks)
-    // verifyPOS(posObjectArray)
+    //collect blanks and turn them to an array of objects that hold all possible parts of speech for that object
+    let posArray = turnToPOS(blanks)
+    verifyPOS(posArray)
+    
+
+    console.log(posArray)
     console.log('content then blanks')
     console.log(content)
     console.log(blanks)
@@ -99,11 +109,17 @@ function turnContentToPostData(inputContent){
 
 //HELPER FUNCTIONS//
 function verifyPOS(objectArray){
+    let arrayOfWords = objectArray
+    console.log('start verify')
+    console.log(arrayOfWords)
+    console.dir(objectArray)
+    console.log('loop')
+    // take each object of data and 
 
-    //take each object of data and 
-    posArray.forEach(posObject => {
-    
+    objectArray.forEach(object => {
+        console.log(object)
     })
+    console.log('end verify')
 }
 
 function turnToPOS(arrayOfWords){
@@ -116,7 +132,16 @@ function turnToPOS(arrayOfWords){
     })
     console.log('array of parts of speech')
     console.log(posArray)
+  
     return posArray
+    // return CloneArray(posArray)
+}
+
+function CloneArray(array){
+    var clone = new Array();
+    for (var i = 0; i < array.length; i++)
+        clone[clone.length] = array[i];
+    return clone;
 }
 
 function el(id){
