@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAllTemplates()
     .then(renderTemplateList)
     fetchAllCompletedLibs()
+    .then(renderCompletedLibs)
 
 })
 
@@ -47,12 +48,57 @@ function fetchAllCompletedLibs() {
 }
 
 function renderCompletedLibs(json){
+    let navBar = document.getElementById('navbar-dropdown')
     json.forEach( radLib => {
-        radLib.name
+        // console.log(radLib)
+        let radLibLink = document.createElement('a')
+        radLibLink.class = 'navbar-item'
+        radLibLink.innerHTML = `${radLib.name} <br>`
+        radLibLink.setAttribute("id", radLib.id)
+        radLibLink.addEventListener("click", showCompletedLib)
+        navBar.appendChild(radLibLink)
     })
+
+}
+
+function showCompletedLib(e){
+    event.preventDefault();
+    let radLibId = e.target.id
+    let completedLib;
+    showDiv.innerHTML = ''
+    fetchSingleLib(radLibId)
+    .then(renderCompletedLibShowDiv)
+    
+}
+
+function fetchSingleLib(radLibId){
+    return fetch(`${completedURL}/${radLibId}`)
+    .then(resp => resp.json())
+}
+
+function renderCompletedLibShowDiv(radLibObject){
+    let header = document.createElement('h1')
+    header.innerText = radLibObject.name
+    header.style.textAlign = "center"
+    header.style.fontSize = "50px"
+    header.style.fontFamily = "marker felt"
+
+    showDiv.appendChild(header)
+    showDiv.innerHTML += radLibObject.content
+    
+    showDiv.innerHTML += `<br><br><button  id="${radLibObject.id}" style="border-radius: 10px; color: rgb(255, 255, 255); background-color: rgb(50, 152, 220);"> DELETE THIS ATROCITY</button>`
+    let deleteButton = showDiv.querySelector('button')
+    deleteButton.addEventListener("click", deleteCompletedRadLib)
 }
 
 
+function deleteCompletedRadLib(e){
+    event.preventDefault()
+    let radLibId = e.target.id
+    fetch(`${completedURL}/${radLibId}`, {
+        method: 'DELETE'   
+    })
+}
 //**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
 //function to split text block into an array
 function splitByPipe(textBlock){
