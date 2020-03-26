@@ -56,11 +56,13 @@
 
               <div class="navbar-end">
                 <div class="navbar-item">
-
-
-                  <a HREF="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black'">
+                  <a href="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black' ">
                     Home
                   </a>
+                  <a id="template-create" href="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black' ">
+                    Create a Template
+                  </a>
+                 
                   <!-- <a class="navbar-item">
                     "Link to Something"
                   </a> -->
@@ -68,31 +70,11 @@
                     <a class="navbar-link">
                       Browse Completed Rad Libs
                     </a>
-                    <div class="navbar-dropdown">
+                    <div class="navbar-dropdown" id='navbar-dropdown'>
                       <a class="navbar-item">
                         About
                       </a>
-                      <a class="navbar-item">
-                        Jobs
-                      </a>
-                      <a class="navbar-item">
-                        Contact
-                      </a>
-                      <hr class="navbar-divider">
-                      <a class="navbar-item">
-                        Report an issue
-                      </a>
-
-                  <!-- <div class="buttons">
-                    <a class="button is-primary">
-                      <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                      Log in
-                    </a>
-
-                  </div> -->
-                <!-- </div> -->
+                
               </div>
 
 
@@ -102,13 +84,13 @@
             <aside class="menu" style="background-color: #3298dc; border-radius: 10px">
                 <div style="padding: 15px">
 
-                  <h1 style="color: rgb(48, 47, 53); font-weight:normal; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  <h1 style="color: rgb(48, 47, 53); font-weight:normal; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; cursor: pointer;">
                      Rad Libs offer a creative spin on storytelling!
                     <br><br>
                   </h1>
                     <h1 style="color: white; font-family:'Courier New', Courier, monospace; font-weight:bolder; font-size: large">Select a Rad Lib:</h1>
                 <br>
-                <ul id="templateUl" class="menu-list" style="color: #FFFFFF">
+                <ul id="templateUl" class="menu-list" style="color: #FFFFFF; cursor: pointer">
                 </ul> 
                 <br><br>
                 
@@ -132,54 +114,21 @@
                 
                 <center><img src="RadLibAPI/app/assets/images/logo2.png" width="412" height="328"></center>
                 <!-- <center><img src="RadLibAPI/app/assets/images/rad_mad_libs.jpg" width="400" height="316"></center> -->
-             
-            
-                <br>
-                
 
-                <p class="menu-label" style="color: white">
-                     Rad Libs offer a creative spin on storytelling. Select a Rad Lib and enjoy!  
-                    <br><br>
-                    Fill in an entry for each part of speech.
-                    <br><br>
-                    <!-- Fill in an entry for each part of speech! -->
-                    <!-- <br><br>
-                    Remember:
-                    <br><br>
-                    A noun is a person, place or thing (ostrich, broken shoelace, the Louvre).
-                    <br>
-                    A verb is an action (cry, juggle, yodel).
-                    <br>
-                    An adjective describes a noun (fluffy, poisonous, irritating).
-                    <br>
-                    An adverb modifies or describes a verb or adjective (gently, creepily, joyously).
-                </p> -->
-                <h1 style="color: white">Parts of Speech:</h1>
-                <ul class="menu-list" >
-                  <li><a>Noun: a person, place, or thing</a></li>
-                  <li><a>Verb: an action word</a></li>
-                  <li><a>Adjective: a describing word</a></li>
-                  <li><a>Adverb: a describing word that ends in "ly"</a></li>
-                </ul>
                 <br>
-                <h1 style="color: white">Rad Lib Templates:</h1>
-                <br>
-                <ul id="templateUl" class="menu-list" style="color: rgb(71, 70, 70)">
-                </ul> 
-            </div>
-              </aside>
-            </section>
-              <div id="showDiv" class="column is-two-thirds" style="float:right; padding: 15px">
-              <p class="subtitle">
-                <br><br>
-                <center>&#9734 <img src="RadLibAPI/app/assets/images/RadLibs_logo.png" width="412" height="328"></center>
-                <!-- <center><img src="RadLibAPI/app/assets/images/rad_mad_libs.jpg" width="400" height="316"></center> -->
-                <br>
-                <center><h1>A familiar word game.</h1></center>
+              </div> 
 
-              </p>
-              </div>
-      <script src="index.js"></script>     
+
+              <footer style="position: fixed; bottom: 0; text-align: center; width: 100%">
+                <div style= padding:10px;>
+                  <p>
+                    <center><strong>Rad Libs</strong> by Maylene, Dane, and Jessica of the Dev Tones cohort at Flatiron School.</center>
+                  </p>
+                </div>
+              </footer>
+
+              <script src="index.js"></script>     
+              <script src="createTemplate.js"></script> 
           <script src="https://cdn.jsdelivr.net/npm/wordpos-web@1.0.2/dist/wordpos.min.js"></script>
           <script>
             let wordpos = new WordPOS({
@@ -189,10 +138,6 @@
               debug: true
             });
 
-            wordpos.getAdverbs('this is lately a likely tricky business this is')
-              .then(res => {
-                console.log(res); // ["lately", "likely"]
-              });
           </script>   
     </body>
 </html>
