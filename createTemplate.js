@@ -47,6 +47,7 @@ function createAndAttachForm(){
     contentInput.setAttribute('rows', 5)
     contentInput.style["display"] = "block";
     submitButton.innerText = "SAVE"
+    submitButton.style = 'border-radius: 10px; color: rgb(255, 255, 255); background-color: rgb(50, 152, 220);'
     submitButton.setAttribute('id','submit')
     submitButton.addEventListener("click", postTemplate)
     form.appendChild(contentInputLabel)
@@ -62,11 +63,9 @@ function createAndAttachForm(){
         titleInputValue = document.getElementById('name').value
         
         turnContentToPostData(contentInputValue)
-
-        console.log("this is at the end of the postTemplate function"
-        )
-        console.log(titleInputValue)
-        console.log(contentInputValue)
+        
+        showDiv.innerHTML = ''
+        console.log("this is at the end of the postTemplate function")
     }
 
     //append all elements into showDiv
@@ -81,7 +80,7 @@ function turnContentToPostData(inputContent){
     let fullContentArray = splitByPipe(inputContent)
     let content = []
     let blanks = []
-    for( i = 0; i<fullContentArray.length; i++){
+    for( let i = 0; i<fullContentArray.length; i++){
         if (i % 2 == 0){
             content.push(fullContentArray[i])
         }
@@ -90,8 +89,12 @@ function turnContentToPostData(inputContent){
         }
     }
 
-    let posObjectArray = turnToPOS(blanks)
-    // verifyPOS(posObjectArray)
+    //collect blanks and turn them to an array of objects that hold all possible parts of speech for that object
+    let posArray = turnToPOS(blanks)
+    verifyPOS(posArray)
+    
+
+    console.log(posArray)
     console.log('content then blanks')
     console.log(content)
     console.log(blanks)
@@ -99,11 +102,17 @@ function turnContentToPostData(inputContent){
 
 //HELPER FUNCTIONS//
 function verifyPOS(objectArray){
+    let arrayOfWords = objectArray
+    console.log('start verify')
+    console.log(arrayOfWords)
+    console.dir(objectArray)
+    console.log('loop')
+    // take each object of data and 
 
-    //take each object of data and 
-    posArray.forEach(posObject => {
-    
+    objectArray.forEach(object => {
+        console.log(object)
     })
+    console.log('end verify')
 }
 
 function turnToPOS(arrayOfWords){
@@ -116,7 +125,16 @@ function turnToPOS(arrayOfWords){
     })
     console.log('array of parts of speech')
     console.log(posArray)
+  
     return posArray
+    // return CloneArray(posArray)
+}
+
+function CloneArray(array){
+    var clone = new Array();
+    for (var i = 0; i < array.length; i++)
+        clone[clone.length] = array[i];
+    return clone;
 }
 
 function el(id){
