@@ -57,7 +57,9 @@
               <div class="navbar-end">
                 <div class="navbar-item">
 
-
+                  <a id="template-create" href="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black' ">
+                    Create a Template
+                  </a>
                   <a href="javascript:history.go(0)" class="navbar-item" style="color: #FFFFFF onmouseover="this.style.color= 'black' ">
                     Home
                   </a>
@@ -137,8 +139,8 @@
               </div> 
 
 
-
-      <script src="index.js"></script>     
+              <script src="index.js"></script>     
+              <script src="createTemplate.js"></script> 
           <script src="https://cdn.jsdelivr.net/npm/wordpos-web@1.0.2/dist/wordpos.min.js"></script>
           <script>
             let wordpos = new WordPOS({
@@ -148,10 +150,6 @@
               debug: true
             });
 
-            wordpos.getAdverbs('this is lately a likely tricky business this is')
-              .then(res => {
-                console.log(res); // ["lately", "likely"]
-              });
           </script>   
     </body>
 </html>
