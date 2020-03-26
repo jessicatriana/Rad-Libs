@@ -53,7 +53,7 @@ function renderCompletedLibs(json){
         // console.log(radLib)
         let radLibLink = document.createElement('a')
         radLibLink.class = 'navbar-item'
-        radLibLink.innerHTML = `${radLib.name} <br>`
+        radLibLink.innerHTML = `${radLib.name}, (${rating}) <br>`
         radLibLink.setAttribute("id", radLib.id)
         radLibLink.addEventListener("click", showCompletedLib)
         navBar.appendChild(radLibLink)
@@ -229,8 +229,6 @@ function createRadLibFormDiv(radLib){
         submitBtn.style.color = "#FFFFFF"
         submitBtn.style.backgroundColor = "#3298dc" 
         rateForm.appendChild(submitBtn)
-
-      
        
         submitBtn.addEventListener("click", event => {
             event.preventDefault()
@@ -244,7 +242,7 @@ function createRadLibFormDiv(radLib){
 
         }
 
-    }
+        }
         // END OF RATING CODE THAT SHOULD BE BROKEN INTO FUNCTIONS
 }
 
