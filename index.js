@@ -102,6 +102,7 @@ function deleteCompletedRadLib(e){
           "Accept": "application/json"
         }   
     })
+    alert("Rad Lib Deleted!")
 }
 //**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
 //function to split text block into an array
