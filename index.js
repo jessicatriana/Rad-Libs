@@ -3,6 +3,7 @@ let rating = 0
 //div holding testform
 const showDiv = document.getElementById('showDiv')
 const templateURL = "http://localhost:3000/rad_lib_templates"
+const completedURL = "http://localhost:3000/completed_rad_libs"
 
 function fetchAllTemplates(){
     return fetch(templateURL)
@@ -36,8 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // createRadLibFormDiv(radLibThree)
     fetchAllTemplates()
     .then(renderTemplateList)
+    fetchAllCompletedLibs()
 
 })
+
+function fetchAllCompletedLibs() {
+   return fetch(completedURL)
+    .then(response => response.json())
+}
+
+function renderCompletedLibs(json){
+    json.forEach( radLib => {
+        radLib.name
+    })
+}
 
 
 //**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
