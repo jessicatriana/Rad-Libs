@@ -1,3 +1,5 @@
+let rating = 0
+
 //div holding testform
 const showDiv = document.getElementById('showDiv')
 const templateURL = "http://localhost:3000/rad_lib_templates"
@@ -118,6 +120,11 @@ function createRadLibFormDiv(radLib){
         const saveBtn = document.createElement('button');
         saveBtn.id = radLib.id;
         saveBtn.innerText = "Save Your Rad Lib";
+        saveBtn.style.borderRadius = "10px"
+        saveBtn.style.color = "#FFFFFF"
+        saveBtn.style.backgroundColor = "#3298dc" 
+
+
         saveBtn.addEventListener('click', postCompletedRadLib)
         
         // showDiv.innerHTML = `<h1>${header.innerText}</h1>` + "<br>" + storyBlock
@@ -132,7 +139,7 @@ function createRadLibFormDiv(radLib){
         header.style.fontFamily = "marker felt"
    
         showDiv.appendChild(header)
-        showDiv.innerHTML += storyBlock
+        showDiv.innerHTML += `${storyBlock} <br><br>`
         showDiv.appendChild(saveBtn);
         // showDiv.innerHTML = header + "<br>" + storyBlock
 
@@ -141,15 +148,16 @@ function createRadLibFormDiv(radLib){
         const rateForm = document.createElement("form")
         const formLabel = document.createElement('label')
         const formInput = document.createElement('input')
+        formInput.setAttribute("id", "rating-input")
 
         rateForm.style.textAlign = "left"
         showDiv.appendChild(rateForm)
         rateForm.setAttribute('data-id', radLib.id);
     
-        formLabel.innerHTML = "<br><strong>Rate this Rad Lib (1-5)</strong><br>"
+        formLabel.innerHTML = "<br><br><br><strong>Rate this Rad Lib (1-5)</strong><br>"
         rateForm.appendChild(formLabel)
         rateForm.appendChild(formInput)
-        rateForm.innerHTML += "<br>";
+        rateForm.innerHTML += "<br><br>";
 
         const submitBtn = document.createElement('button')
         submitBtn.innerHTML = "Submit Rating"
@@ -160,12 +168,17 @@ function createRadLibFormDiv(radLib){
 
       
        
-        submitBtn.addEventListener("click", () => {
+        submitBtn.addEventListener("click", event => {
             event.preventDefault()
-            let ratingNum = event.target.value
-            console.log(ratingNum)
-            
-        })    
+
+            let inputValue = document.getElementById("rating-input").value
+            rating += parseInt(inputValue)
+            console.log(rating)
+        })      
+
+        function showRating(rating) {
+
+        }
 
     }
         // END OF RATING CODE THAT SHOULD BE BROKEN INTO FUNCTIONS
