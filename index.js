@@ -96,7 +96,11 @@ function deleteCompletedRadLib(e){
     event.preventDefault()
     let radLibId = e.target.id
     fetch(`${completedURL}/${radLibId}`, {
-        method: 'DELETE'   
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }   
     })
 }
 //**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */

@@ -22,7 +22,7 @@ class CompletedRadLibsController < ApplicationController
   end
 
   def destroy 
-    rad_lib = CompletedRadLib.find_by(id: params[:id])
+    rad_lib = CompletedRadLib.find(params[:id])
     rad_lib.destroy
 
     render json: rad_lib
