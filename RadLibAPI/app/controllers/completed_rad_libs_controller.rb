@@ -3,12 +3,12 @@ class CompletedRadLibsController < ApplicationController
 
   def index 
     completed = CompletedRadLib.all
-    render json: completed, only: [:name, :content]
+    render json: completed, only: [:name, :content, :id]
   end
 
   def show 
     rad_lib = CompletedRadLib.find_by(id: params[:id])
-    render json: rad_lib, only: [:name, :content]
+    render json: rad_lib, only: [:name, :content, :id]
   end
 
   def create
