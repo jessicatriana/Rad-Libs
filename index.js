@@ -250,6 +250,7 @@ function createRadLibFormDiv(radLib){
 function postCompletedRadLib(event) {
   //if we need to move the button (titleToPost variable has the name: data)  
   //let titleToPost = document.getElementsByTagName('h1')[3].innerText;
+  alert("Rad Lib Saved!")
   data = {
       name: event.target.parentElement.firstElementChild.nextElementSibling.innerText, 
       content: contentToPost, 

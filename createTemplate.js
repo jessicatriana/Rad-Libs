@@ -11,7 +11,7 @@ function fillDiv(){
 function createAndAttachForm(){
     //create and fill header with intro to form creation
     let header = document.createElement('h1')
-    header.innerText = "Create your own new Rad Lib template!"
+    header.innerText = "Create your own Rad Lib template!"
     header.style.textAlign = "center"
     header.style.fontSize = "50px"
     header.style.fontFamily = "marker felt"
@@ -19,9 +19,9 @@ function createAndAttachForm(){
     //create and fill description box on how to use form
 
     let intro = document.createElement('p')
-    intro.innerText = "Type or copy the paragraph(s) you would like to make into a template, then surround the each individual word you would like to make into a variable with || (commonly called double pipes) on either side! \nExample: \"Today I learned how to ||ride|| a ||horse||. It was ||exhausting||!\". \nIt is important you *only* surround the letters and not punctuation. \n Our amazing, top of the line AI will deduce what part of speech your word is and create a template based on your entry."
-    intro.style.textAlign = "center"
-    intro.style.fontFamily = "marker felt"
+    intro.innerHTML= "1. Type or copy the paragraph(s) you would like to make into a template. <br> 2. To turn a word into a variable, surround it with || <em>(commonly called double pipes).</em><br><br><em>Example:</em>  Today I learned how to ||<strong>ride</strong>|| a ||<strong>horse</strong>||. It was ||<strong>exhausting</strong>||!<br><br>It is important that you *only* surround the letters and not the punctuation. \n Our amazing, top of the line AI will deduce which part of speech your word is, then create a template based on your entry."
+    // intro.style.textAlign = "center"
+    // intro.style.fontFamily = "marker felt"
 
     //create aspects of form to prep for post with submit
     let form = document.createElement('form')
@@ -37,7 +37,7 @@ function createAndAttachForm(){
     form.appendChild(titleInputLabel)
     form.innerHTML += "<br>"
     form.appendChild(titleInput)
-    form.innerHTML += "<br>"
+    form.innerHTML += "<br><br>"
     contentInputLabel.innerText = "Your story with double pipes!"
     contentInputLabel.setAttribute("for", "text-box")
     contentInputLabel.style["display"] = "block";
@@ -46,7 +46,10 @@ function createAndAttachForm(){
     contentInput.setAttribute('cols', 100)
     contentInput.setAttribute('rows', 5)
     contentInput.style["display"] = "block";
-    submitButton.innerText = "SAVE"
+    submitButton.innerText = "Save"
+    submitButton.style.borderRadius = "10px"
+    submitButton.style.color = "#FFFFFF"
+    submitButton.style.backgroundColor = "#3298dc" 
     submitButton.setAttribute('id','submit')
     submitButton.addEventListener("click", postTemplate)
     form.appendChild(contentInputLabel)
