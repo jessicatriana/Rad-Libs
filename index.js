@@ -49,6 +49,7 @@ function fetchAllCompletedLibs() {
 
 function renderCompletedLibs(json){
     let navBar = document.getElementById('navbar-dropdown')
+    navBar.innerHTML = '';
     json.forEach( radLib => {
         // console.log(radLib)
         let radLibLink = document.createElement('a')
@@ -102,7 +103,17 @@ function deleteCompletedRadLib(e){
           "Accept": "application/json"
         }   
     })
+
+    .then(showAfterDeletedLib)
+    .then(fetchAllCompletedLibs)
+    .then(renderCompletedLibs)
+}
+
+function showAfterDeletedLib() {
+  showDiv.innerHTML = '';
+  showDiv.innerHTML = `<center><img src="https://www.govloop.com/wp-content/uploads/2015/07/minions.png"></center>`
     alert("Rad Lib Deleted!")
+
 }
 //**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
 //function to split text block into an array
@@ -264,8 +275,11 @@ function postCompletedRadLib(event) {
     },
     body: JSON.stringify(data)
   })
-    .then(response => response.json())
-    .then(result => console.log(result))
+   // .then(response => response.json())
+    .then(fetchAllCompletedLibs)
+    .then(renderCompletedLibs)
+
+  
 };
 
 //collects data from inputs and returns an array of values
