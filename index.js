@@ -103,6 +103,14 @@ function deleteCompletedRadLib(e){
           "Accept": "application/json"
         }   
     })
+    .then(showAfterDeletedLib)
+    .then(fetchAllCompletedLibs)
+    .then(renderCompletedLibs)
+}
+
+function showAfterDeletedLib() {
+  showDiv.innerHTML = '';
+  showDiv.innerHTML = `<center><img src="https://www.govloop.com/wp-content/uploads/2015/07/minions.png"></center>`
 }
 //**FOLLOWING CODE ONLY TO PROCESS MAD LIB TEMPLATE FORM AND DISPLAY */
 //function to split text block into an array
