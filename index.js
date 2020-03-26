@@ -49,6 +49,7 @@ function fetchAllCompletedLibs() {
 
 function renderCompletedLibs(json){
     let navBar = document.getElementById('navbar-dropdown')
+    navBar.innerHTML = '';
     json.forEach( radLib => {
         // console.log(radLib)
         let radLibLink = document.createElement('a')
@@ -264,8 +265,11 @@ function postCompletedRadLib(event) {
     },
     body: JSON.stringify(data)
   })
-    .then(response => response.json())
-    .then(result => console.log(result))
+   // .then(response => response.json())
+    .then(fetchAllCompletedLibs)
+    .then(renderCompletedLibs)
+
+  
 };
 
 //collects data from inputs and returns an array of values
