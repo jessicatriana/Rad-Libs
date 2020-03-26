@@ -172,12 +172,14 @@ function createRadLibFormDiv(radLib){
 }
 
 function postCompletedRadLib(event) {
+  //if we need to move the button (titleToPost variable has the name: data)  
+  //let titleToPost = document.getElementsByTagName('h1')[3].innerText;
   data = {
-      name: event.target.parentNode.previousElementSibling.previousElementSibling.innerText, 
-      content: event.target.parentElement.previousSibling.data, 
+      name: event.target.parentElement.firstElementChild.nextElementSibling.innerText, 
+      content: contentToPost, 
       template_id: event.target.id
     }
-  
+
   fetch('http://localhost:3000/completed_rad_libs', {
     method: 'POST',
     headers: {
@@ -203,6 +205,7 @@ function collectAnswers(){
     return inputArray
 }
 
+let contentToPost = [];
 //combines and returns the array of answer and the array of content in a string
 function combineAnswersAndContent(answerArray, contentArray){
     //set empty array
@@ -212,11 +215,14 @@ function combineAnswersAndContent(answerArray, contentArray){
          //add element at index to storyArray for answer and content. If answer array is shorter than content array, only push content
          if (i >= answerArray.length){
              storyArray += contentArray[i]
+             contentToPost += contentArray[i]
             }
         else {
+        contentToPost += (contentArray[i] + " " + answerArray[i] + " ");
         storyArray += (contentArray[i] + " " +`<strong>${answerArray[i]}</strong>`  + " ")
         }
     } 
+
     return storyArray
 }
 
