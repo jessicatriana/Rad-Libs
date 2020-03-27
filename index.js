@@ -124,6 +124,7 @@ function splitByPipe(textBlock){
 
 //function that fills the showDiv on selection of a madlib, recieving the arguement of the madlib object
 function createRadLibFormDiv(radLib){
+    
     let content = radLib.content
     //clear base div display
     showDiv.innerHTML = ""
@@ -220,34 +221,36 @@ function createRadLibFormDiv(radLib){
 
 
         // RATING CODE THAT SHOULD BE BROKEN INTO FUNCTIONS
-        const rateForm = document.createElement("form")
-        const formLabel = document.createElement('label')
-        const formInput = document.createElement('input')
-        formInput.setAttribute("id", "rating-input")
+        // const rateForm = document.createElement("form")
+        // const formLabel = document.createElement('label')
+        // const formInput = document.createElement('input')
+        // formInput.setAttribute("id", "rating-input")
 
-        rateForm.style.textAlign = "left"
-        showDiv.appendChild(rateForm)
-        rateForm.setAttribute('data-id', radLib.id);
+        // rateForm.style.textAlign = "left"
+        // showDiv.appendChild(rateForm)
+        // rateForm.setAttribute('data-id', radLib.id);
     
-        formLabel.innerHTML = "<br><br><br><strong>Rate this Rad Lib (1-5)</strong><br>"
-        rateForm.appendChild(formLabel)
-        rateForm.appendChild(formInput)
-        rateForm.innerHTML += "<br><br>";
+        // formLabel.innerHTML = "<br><br><br><strong>Rate this Rad Lib (1-5)</strong><br>"
+        // rateForm.appendChild(formLabel)
+        // rateForm.appendChild(formInput)
+        // rateForm.innerHTML += "<br><br>";
 
-        const submitBtn = document.createElement('button')
-        submitBtn.innerHTML = "Submit Rating"
-        submitBtn.style.borderRadius = "10px"
-        submitBtn.style.color = "#FFFFFF"
-        submitBtn.style.backgroundColor = "#3298dc" 
-        rateForm.appendChild(submitBtn)
+        // const submitBtn = document.createElement('button')
+        // submitBtn.innerHTML = "Submit Rating"
+        // submitBtn.style.borderRadius = "10px"
+        // submitBtn.style.color = "#FFFFFF"
+        // submitBtn.style.backgroundColor = "#3298dc" 
+        // rateForm.appendChild(submitBtn)
        
-        submitBtn.addEventListener("click", event => {
-            event.preventDefault()
+        starRating()
 
-            let inputValue = document.getElementById("rating-input").value
-            rating += parseInt(inputValue)
-            console.log(rating)
-        })      
+        // submitBtn.addEventListener("click", event => {
+        //     event.preventDefault()
+
+        //     let inputValue = document.getElementById("rating-input").value
+        //     rating += parseInt(inputValue)
+        //     console.log(rating)
+        // })      
 
         function showRating(rating) {
 
@@ -255,6 +258,7 @@ function createRadLibFormDiv(radLib){
 
         }
         // END OF RATING CODE THAT SHOULD BE BROKEN INTO FUNCTIONS
+        
 }
 
 function postCompletedRadLib(event) {
@@ -315,4 +319,61 @@ function combineAnswersAndContent(answerArray, contentArray){
 
     return storyArray
 }
+
+function starRating() {
+    const starDiv = document.createElement('div');
+    starDiv.id = 'star-div';
+    starDiv.innerHTML = `<span class="fa fa-star checked" id="one"></span>
+                         <span class="fa fa-star checked" id="two"></span> 
+                         <span class="fa fa-star checked" id="three"></span>
+                         <span class="fa fa-star unchecked" id="four"></span>
+                         <span class="fa fa-star unchecked" id="five"></span>`
+   showDiv.appendChild(starDiv); 
+
+   
+
+    //   let one = document.getElementsByTagName('svg')[0];
+    //   one.addEventListener('click', changeStar);
+   
+    //   let two = document.getElementsByTagName('svg')[1];
+    //   two.addEventListener('click', changeStar);
+   
+    //   let three = document.getElementsByTagName('svg')[2];
+    //   three.addEventListener('click', changeStar);
+   
+    //   let four = document.getElementsByTagName('svg')[3];
+    //   four.addEventListener('click', changeStar);
+   
+    //   let five = document.getElementsByTagName('svg')[4];
+    //   five.addEventListener('click', changeStar);
+};
+
+function addEventListenerToStars() {
+    let one = document.getElementsByTagName('svg')[0];
+    one.addEventListener('click', changeStar);
+ 
+    let two = document.getElementsByTagName('svg')[1];
+    two.addEventListener('click', changeStar);
+ 
+    let three = document.getElementsByTagName('svg')[2];
+    three.addEventListener('click', changeStar);
+ 
+    let four = document.getElementsByTagName('svg')[3];
+    four.addEventListener('click', changeStar);
+ 
+    let five = document.getElementsByTagName('svg')[4];
+    five.addEventListener('click', changeStar);
+}
+
+
+
+
+function changeStar(event) {
+    console.log(event);    
+}
+
+
+
+
+
 
